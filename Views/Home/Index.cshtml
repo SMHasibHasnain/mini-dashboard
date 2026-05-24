@@ -1,0 +1,21 @@
+﻿@{
+    string hostelName = "Model Chatrabash";
+    int totalRooms = 5;
+    bool isMaintenanceDay = false;
+}
+
+<h1 class="heading-1">Welcome to @hostelName!</h1>
+
+@if (isMaintenanceDay) {
+    <div class="alert alert-warning">
+        Today is out maintenance day! Services are off. Sorry!
+    </div>
+} else {
+    <p>We have total @totalRooms rooms!</p>
+    <p>Room Numbers:</p>
+    <ul>
+        @for (int i = 1; i < totalRooms; i++) {
+            <li>Room No: @i</li>
+        }
+    </ul>
+}
