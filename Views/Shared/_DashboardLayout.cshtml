@@ -1,0 +1,26 @@
+@{
+    Layout = "_Layout";
+}
+
+<div class="row mt-4">
+    <div class="col-md-3">
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action active">ওভারভিউ</a>
+            <a href="#" class="list-group-item list-group-item-action">রুম ম্যানেজমেন্ট</a>
+            <a href="#" class="list-group-item list-group-item-action">মেম্বারস</a>
+            <a href="#" class="list-group-item list-group-item-action">পেমেন্ট হিস্ট্রি</a>
+        </div>
+    </div>
+    
+    <div class="col-md-9">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</div>
+
+@section DashboardScripts {
+    @await RenderSectionAsync("DashboardScripts", required: true)
+}

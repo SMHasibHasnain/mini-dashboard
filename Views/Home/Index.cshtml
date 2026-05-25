@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Dashboard";
+    Layout = "_DashboardLayout";
 }
 <div class="alert alert-info">
     @Model.DashboardMessage
@@ -11,7 +12,7 @@
     <div class="col-md-6">
         <h3>রুমের অবস্থা</h3>
         <ul class="list-group">
-            @foreach (var room in Model.Rooms)
+            @foreach (var room in Model.Rooms!)
             {
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     Room: @room.RoomNumber
@@ -26,7 +27,7 @@
     <div class="col-md-6">
         <h3>মেম্বার লিস্ট</h3>
         <ul class="list-group">
-            @foreach (var member in Model.Members)
+            @foreach (var member in Model.Members!)
             {
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     @member.Name
@@ -43,3 +44,9 @@
         </ul>
     </div>
 </div>
+
+@section DashboardScripts {
+    <script>
+        console.log("Welcome to Mini Chatrabash!");
+    </script>
+}
