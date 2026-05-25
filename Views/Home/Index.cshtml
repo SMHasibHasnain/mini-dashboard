@@ -1,21 +1,45 @@
-﻿@{
-    string hostelName = "Model Chatrabash";
-    int totalRooms = 5;
-    bool isMaintenanceDay = false;
+﻿@model DashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
 }
+<div class="alert alert-info">
+    @Model.DashboardMessage
+</div>
 
-<h1 class="heading-1">Welcome to @hostelName!</h1>
-
-@if (isMaintenanceDay) {
-    <div class="alert alert-warning">
-        Today is out maintenance day! Services are off. Sorry!
+<div class="row">
+    <div class="col-md-6">
+        <h3>রুমের অবস্থা</h3>
+        <ul class="list-group">
+            @foreach (var room in Model.Rooms)
+            {
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Room: @room.RoomNumber
+                    <span class="badge @(room.IsAvailable ? "bg-success" : "bg-danger") rounded-pill">
+                        @(room.IsAvailable ? "Free" : "Booked")
+                    </span>
+                </li>
+            }
+        </ul>
     </div>
-} else {
-    <p>We have total @totalRooms rooms!</p>
-    <p>Room Numbers:</p>
-    <ul>
-        @for (int i = 1; i < totalRooms; i++) {
-            <li>Room No: @i</li>
-        }
-    </ul>
-}
+
+    <div class="col-md-6">
+        <h3>মেম্বার লিস্ট</h3>
+        <ul class="list-group">
+            @foreach (var member in Model.Members)
+            {
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    @member.Name
+                    @if(member.DueAmount > 0)
+                    {
+                        <span class="badge bg-warning text-dark rounded-pill">Due: ৳@member.DueAmount</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-light text-dark rounded-pill">Clear</span>
+                    }
+                </li>
+            }
+        </ul>
+    </div>
+</div>
