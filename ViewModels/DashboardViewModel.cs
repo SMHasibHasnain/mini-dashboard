@@ -1,3 +1,5 @@
+using mini_dashboard.Models;
+
 namespace mini_dashboard.ViewModels;
 
 public class DashboardViewModel
